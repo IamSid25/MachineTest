@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Profile_View extends AppCompatActivity {
 
@@ -19,24 +20,20 @@ public class Profile_View extends AppCompatActivity {
         email=(TextView)findViewById(R.id.etEmail);
         number=(TextView)findViewById(R.id.etPhoneNo);
 
-        setData();
-    }
-
-    private void setData() {
         Cursor res= db.getAlldata();
 
         if(res.getCount()==0)
         {
-
+            Toast.makeText(this,"Data Not Found",Toast.LENGTH_SHORT).show();
             return;
         }
 
-        StringBuffer buffer= new StringBuffer();
+//        StringBuffer buffer= new StringBuffer();
         while (res.moveToNext())
         {
-            name.append("NAME :"+res.getString(1)+"\n");
-            email.append("EMAIL "+res.getString(2)+"\n");
-            number.append("EMAIL "+res.getString(3)+"\n");
+            name.setText("NAME :"+res.getString(0)+"\n");
+            email.setText("EMAIL "+res.getString(1)+"\n");
+            number.setText("PHONE NO "+res.getString(2)+"\n");
         }
     }
 }

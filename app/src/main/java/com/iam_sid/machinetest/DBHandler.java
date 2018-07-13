@@ -51,8 +51,8 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     public Cursor getAlldata(){
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res= db.rawQuery("SELECT * FROM "+TABLE_USERS,null);
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res= db.rawQuery("SELECT * FROM "+ TABLE_USERS,null);
         return res;
     }
 }
